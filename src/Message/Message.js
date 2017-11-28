@@ -20,7 +20,7 @@ const selectUnselect = (data) => {
 
 const labelGenerator = (data) => {
   var labels = [];
-  
+
   if (data.length > 0) {
     for (var i = 0; i < data.length; i++) {
       labels.push(<span className="label label-warning">{data[i]}</span>)
@@ -29,16 +29,14 @@ const labelGenerator = (data) => {
   return labels;
 }
 
-// const starNoStar = (starProp) => {
-//   if (starProp === true) {
-//     console.log('star fa fa-star');
-//     return 'star fa fa-star';
-//   }
-//   else {
-//     console.log('star fa fa-star-o');
-//     return 'star fa fa-star-o';
-//   }
-// }
+const starNoStar = (starProp) => {
+  if (starProp === true) {
+    return 'star fa fa-star';
+  }
+  else {
+    return 'star fa fa-star-o';
+  }
+}
 
 const message = ({data}) => {
   return (
@@ -49,7 +47,7 @@ const message = ({data}) => {
             <input type="checkbox" />
           </div>
           <div className="col-xs-2">
-            <i className="star fa fa-star-o"></i>
+            <i className={starNoStar(data.starred)}></i>
           </div>
         </div>
       </div>
