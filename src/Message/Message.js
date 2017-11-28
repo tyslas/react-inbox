@@ -9,6 +9,18 @@ const readUnread = (readProp) => {
   }
 }
 
+const selectUnselect = (data) => {
+  console.log(data.selected);
+    if (data.selected === true) {
+      console.log('selected');
+      return 'selected';
+    }
+    else if (data.selected === false) {
+      console.log('unselected');
+      return '';
+    }
+}
+
 // const starNoStar = (starProp) => {
 //   if (starProp === true) {
 //     console.log('star fa fa-star');
@@ -22,19 +34,19 @@ const readUnread = (readProp) => {
 
 const message = ({data}) => {
   return (
-    <div class={readUnread(data.read)}>
-      <div class="col-xs-1">
-        <div class="row">
-          <div class="col-xs-2">
+    <div className={`${readUnread(data.read)} ${selectUnselect(data)}`}>
+      <div className="col-xs-1">
+        <div className="row">
+          <div className="col-xs-2">
             <input type="checkbox" />
           </div>
-          <div class="col-xs-2">
-            <i class="star fa fa-star-o"></i>
+          <div className="col-xs-2">
+            <i className="star fa fa-star-o"></i>
           </div>
         </div>
       </div>
-      <div class="col-xs-11">
-        <a href="#">{data.subject}</a>
+      <div className="col-xs-11">
+        <a href="#">{`${data.labels[0]} ${data.subject}`}</a>
       </div>
     </div>
   )
