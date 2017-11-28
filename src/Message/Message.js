@@ -10,15 +10,23 @@ const readUnread = (readProp) => {
 }
 
 const selectUnselect = (data) => {
-  console.log(data.selected);
     if (data.selected === true) {
-      console.log('selected');
       return 'selected';
     }
     else if (data.selected === false) {
-      console.log('unselected');
       return '';
     }
+}
+
+const labelGenerator = (data) => {
+  var labels = [];
+  
+  if (data.length > 0) {
+    for (var i = 0; i < data.length; i++) {
+      labels.push(<span className="label label-warning">{data[i]}</span>)
+    }
+  }
+  return labels;
 }
 
 // const starNoStar = (starProp) => {
@@ -46,7 +54,8 @@ const message = ({data}) => {
         </div>
       </div>
       <div className="col-xs-11">
-        <a href="#">{`${data.labels[0]} ${data.subject}`}</a>
+        {labelGenerator(data.labels)}
+        <a href="#">{`${data.subject}`}</a>
       </div>
     </div>
   )
