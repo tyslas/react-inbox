@@ -1,16 +1,14 @@
 import React from 'react';
 
-// readUnread = (readProp) => {
-//   if (readProp === true) {
-//     console.log('read');
-//     return 'read';
-//   }
-//   else {
-//     console.log('unread');
-//     return 'unread';
-//   }
-// }
-//
+const readUnread = (readProp) => {
+  if (readProp === true) {
+    return 'row message unread';
+  }
+  else {
+    return 'row message read';
+  }
+}
+
 // const starNoStar = (starProp) => {
 //   if (starProp === true) {
 //     console.log('star fa fa-star');
@@ -23,9 +21,8 @@ import React from 'react';
 // }
 
 const message = ({data}) => {
-
   return (
-    <div class="row message unread">
+    <div class={readUnread(data.read)}>
       <div class="col-xs-1">
         <div class="row">
           <div class="col-xs-2">
