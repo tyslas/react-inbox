@@ -1,10 +1,15 @@
 import React from 'react';
 import Message from '../Message/Message';
 
-const messageList = ({data}) => {
+const messageList = ({data, toggleSelected}) => {
+
   return (
     <div>
-      {data.map(x => <Message key={x.id} data={x} />)}
+      {data.map((message, i) => <Message
+        key={i}
+        data={message}
+        onSelect={() => toggleSelected(data[i].id)} />)}
+      )}
     </div>
   )
 }

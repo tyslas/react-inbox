@@ -75,13 +75,21 @@ var data = {
 class App extends Component {
   state = data;
 
+  selectToggleHandler = (i) => {
+    console.log(i);
+
+    let newData = this.state.data;
+    // newData[i].selected = !newData[i].selected
+    this.setState({data: newData})
+  }
+
   render() {
     return (
       <div className="App">
         <Toolbar />
         <MessageList
           data={this.state.inbox}
-          />
+          toggleSelected={this.selectToggleHandler} />
       </div>
     );
   }

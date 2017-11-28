@@ -10,20 +10,23 @@ const readUnread = (readProp) => {
 }
 
 const selectUnselect = (data) => {
+  // return !!data.selected
     if (data.selected === true) {
       return 'selected';
     }
     else if (data.selected === false) {
       return '';
+    } else {
+      return 'defaultChecked'
     }
 }
 
 const labelGenerator = (data) => {
-  var labels = [];
+  let labels = [];
 
   if (data.length > 0) {
     for (var i = 0; i < data.length; i++) {
-      labels.push(<span className="label label-warning">{data[i]}</span>)
+      labels.push(<span className="label label-warning" key={i}>{data[i]}</span>)
     }
   }
   return labels;
@@ -38,13 +41,34 @@ const starNoStar = (starProp) => {
   }
 }
 
-const message = ({data}) => {
+const selector = (selCheck) => {
+
+  if (selCheck === true) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+const message = ({data, onSelect}) => {
+  console.log(data);
+  // let classNames = 'row message'
+  //  classNames += this.props.message.read === true
+  //     ? ' read' : ' unread'
+  //  if (this.props.message.selected === true) {classNames += ' selected'}
+  //
+  // let isStarred = 'star fa '
+  //   isStarred += this.props.message.starred === true
+  //     ? 'fa-star' : 'fa-star-o'
+
   return (
     <div className={`${readUnread(data.read)} ${selectUnselect(data)}`}>
       <div className="col-xs-1">
         <div className="row">
           <div className="col-xs-2">
-            <input type="checkbox" />
+            <input type="checkbox" onChange={onSelect}
+            defaultChecked={selector(data.selected)} />
           </div>
           <div className="col-xs-2">
             <i className={starNoStar(data.starred)}></i>
